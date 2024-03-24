@@ -1,8 +1,11 @@
-
+import MeraComp from "./Mera"
 function App() {
-  
+  var name = "Aamir Naved";
   return (
-   <h1>Hello World Vite!!!</h1>
+    <>
+      <h1>Hello World Vite!!! {name}</h1>
+    </>
+   
   )
 }
 
