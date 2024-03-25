@@ -97,7 +97,7 @@ useEffect(() => {
         className="outline-none bg-blue-500 text-white px-3 py-0.5 shrink-0"
         >Copy</button>
       </div> 
-      <div className="flex text-sm gap-x-2">
+      <div className="flex text-sm gap-x-2"> 
       <div className="flex items-center gap-x-1">
         <input type="range"
         min={6}
