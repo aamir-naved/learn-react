@@ -68,3 +68,8 @@ A unique key is assigned to each list item using the todo.id to ensure efficient
 */
 
 export default Todos
+
+/*
+The Todos component is exported as the default export of the module, making it available for use in other parts of the application.
+In summary, this component fetches todos from the Redux store, displays them in a list, and provides functionality to remove todos. It demonstrates how to interact with the Redux store using hooks like useSelector and useDispatch, and how to dispatch actions to update the store state.
+*/
