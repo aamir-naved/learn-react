@@ -5,17 +5,33 @@ function App() {
   const [charsAllowed, setCharsAllowed] = useState(false);
   const [password, setPassword] = useState("")
 
+  /*
+Uses the useState hook to manage state variables:
+length: Represents the length of the generated password.
+numberAllowed: Indicates whether numbers are allowed in the password.
+charsAllowed: Indicates whether special characters are allowed in the password.
+password: Represents the generated password.
+  */
+
   // useRef
   // need to create a variable to use it.
 
   const passwordRef = useRef(null); // no default value right now
 
   /*
+Uses the useRef hook to create a reference to the password input element.
+This reference is later used for selecting and copying the password to the clipboard.
+  */
+  /*
 useRef hook, UI pe kisi bhi element ka reference de deta hai,(woh jaake pass karna hota hai tab lagega)
 phir uss element ke saath manupulation kar sakte,
   */
 
 
+/*
+Uses the useCallback hook to memoize the copyPassToClip function.
+Memoization ensures that the function is not recreated on each render unless its dependencies (password) change.
+*/
   const copyPassToClip = useCallback(() => {
     passwordRef.current?.select();
     passwordRef.current?.setSelectionRange(0,20);
@@ -38,6 +54,11 @@ yeh cache me rakhta method ko ,
 agar koi aisa method hai jo baar baar hi call hona hai,
 to useCallback hook will help to memoize it, and optimize it
   */
+
+/*
+Defines a function passwordGenerator to generate a password based on user preferences.
+Memoizes the function using useCallback to prevent unnecessary re-renders.
+*/
   const passwordGenerator = useCallback(() => {
     let pass = "";
     let str = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm";
@@ -72,6 +93,11 @@ useEffect se koi variable banane ki jrurat nahi hai.
 array ke andar hum log dependency dete, ki kis variable me yaa kis method ke 
 trigger hone pe call karna hai.
 
+*/
+
+/*
+Uses the useEffect hook to generate a password when the component mounts or when any of the dependencies (length, numberAllowed, charsAllowed) change.
+Ensures that the password is updated based on user preferences.
 */
 useEffect(() => {
   passwordGenerator();
@@ -134,5 +160,25 @@ useEffect(() => {
     </>
   )
 }
+
+/*
+Reasoning:
+State Management:
+
+Reasoning: Using state variables to manage password length, inclusion of numbers and special characters, and the generated password allows for dynamic updates based on user input.
+Effect on Application: Enables users to customize the password generation process according to their preferences, enhancing the flexibility and usability of the application.
+Ref for DOM Manipulation:
+
+Reasoning: Using a ref to reference the password input element allows for DOM manipulation, such as selecting and copying the generated password to the clipboard.
+Effect on Application: Enhances user experience by providing a convenient way to copy the generated password without requiring manual selection.
+useCallback for Function Memoization:
+
+Reasoning: Memoizing functions like copyPassToClip and passwordGenerator using useCallback prevents unnecessary re-renders and optimizes performance.
+Effect on Application: Improves application efficiency by avoiding redundant function creations, leading to smoother user interactions and better overall performance.
+Effect for Initial Password Generation:
+
+Reasoning: Using useEffect to trigger password generation ensures that a password is generated when the component mounts or when user preferences change.
+Effect on Application: Provides users with an initial password and updates it dynamically based on any changes to the password generation criteria, ensuring that the generated password always reflects the latest preferences.
+*/
 
 export default App
